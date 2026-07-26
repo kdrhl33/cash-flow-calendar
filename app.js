@@ -21,28 +21,32 @@ function getDaysInMonth(year, month) {
 
 function buildCalendar(year, month) {
   const calendar = document.getElementById("calendar");
-
-  if (!calendar) {
-    console.log("Calendar element not found");
-    return;
-  }
-
   calendar.innerHTML = "";
 
   let balance = startingBalance;
 
   for (let day = 1; day <= getDaysInMonth(year, month); day++) {
-    const dateString = `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+
+    const dateString = `${year}-${String(month + 1).padStart(2,"0")}-${String(day).padStart(2,"0")}`;
+
+    let dailyItems = "";
 
     transactions.forEach(item => {
-      if (item.date === dateString) {
-        if (item.type === "income") {
+      if(item.date === dateString){
+
+        if(item.type === "income"){
           balance += item.amount;
-        } else {
-          balance -= item.amount;
+          dailyItems += `<div class="income">+${item.name}<br>S$${item.amount}</div>`;
         }
+
+        if(item.type === "expense"){
+          balance -= item.amount;
+          dailyItems += `<div class="expense">${item.name}<br>-S$${item.amount}</div>`;
+        }
+
       }
     });
+
 
     const box = document.createElement("div");
     box.className = "day";
@@ -50,11 +54,12 @@ function buildCalendar(year, month) {
     box.innerHTML = `
       <strong>${day}</strong>
       <br>
-      Balance: $${balance.toFixed(2)}
+      ${dailyItems}
+      <small>S$${balance.toFixed(2)}</small>
     `;
 
     calendar.appendChild(box);
   }
 }
 
-buildCalendar(2026, 6);
+buildCalendar(2026,6);
