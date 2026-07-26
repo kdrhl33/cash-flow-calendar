@@ -82,7 +82,9 @@ border-bottom:1px solid #334155;
 
 .summaryRow:last-child{
 border-bottom:none;
-}#calendar{
+}
+
+#calendar{
 display:grid;
 grid-template-columns:repeat(7,1fr);
 gap:10px;
@@ -168,6 +170,7 @@ font-size:13px;
 color:white;
 width:60px;
 }
+
 .add-btn{
 width:62px;
 height:62px;
