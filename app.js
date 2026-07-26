@@ -1,18 +1,38 @@
 const startingBalance = 819.35;
 
-const transactions = [
+const recurringTransactions = [
   {
-    date: "2026-07-12",
+    day: 12,
     amount: 3200,
     type: "income",
     name: "Salary"
   },
   {
-    date: "2026-07-25",
-    amount: 26.48,
+    day: 25,
+    amount: 244.15,
     type: "expense",
-    name: "Bill"
+    name: "Great Eastern"
   }
+];
+
+
+function getTransactionsForMonth(year, month) {
+
+  let list = [];
+
+  recurringTransactions.forEach(item => {
+
+    list.push({
+      date: `${year}-${String(month + 1).padStart(2,"0")}-${String(item.day).padStart(2,"0")}`,
+      amount: item.amount,
+      type: item.type,
+      name: item.name
+    });
+
+  });
+
+  return list;
+}
 ];
 
 function getDaysInMonth(year, month) {
