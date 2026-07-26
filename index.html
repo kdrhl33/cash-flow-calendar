@@ -1,88 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CashFlow Calendar</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="manifest" href="manifest.json">
-    <link rel="stylesheet" href="style.css">
+<title>CashFlow Calendar</title>
 
-    <meta name="theme-color" content="#111827">
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<header class="header">
-    <h1>💰 CashFlow Calendar</h1>
-</header>
-
 <div class="container">
 
-    <section class="card balance-card">
+<h1 class="title">💰 CashFlow Calendar</h1>
 
-        <h2>Current Balance</h2>
+<div class="balance-card">
 
-        <div id="currentBalance" class="balance">
-            S$819.35
-        </div>
+<p>Current Balance</p>
 
-        <div class="nextBill">
+<h2 id="balance">S$819.35</h2>
 
-    <p>Next Bill</p>
+<div class="next-card">
 
-    <h3 id="nextBillName">
-        Great Eastern
-    </h3>
+<p>Next Bill</p>
 
-    <p id="nextBillAmount">
-        -S$244.15
-    </p>
+<h3 id="nextBillName">Great Eastern</h3>
 
-    <hr style="margin:12px 0;border:none;border-top:1px solid rgba(255,255,255,0.2);">
+<p id="nextBillAmount">-S$244.15</p>
 
-    <p>Balance After Bill</p>
+<hr>
 
-    <h2 id="balanceAfterBill">
-        S$575.20
-    </h2>
+<p>Balance After Bill</p>
+
+<h2 id="balanceAfterBill">S$575.20</h2>
 
 </div>
 
-    </section>
+</div>
 
-    <section class="card">
+<div class="card">
 
-    <h2>Today's Summary</h2>
+<h2>Today's Summary</h2>
 
-    <div class="summaryRow">
-        <span>Current Balance</span>
-        <strong id="summaryBalance">S$819.35</strong>
-    </div>
+<div class="summaryRow">
+<span>Current Balance</span>
+<strong>S$819.35</strong>
+</div>
 
-    <div class="summaryRow">
-        <span>Today's Bills</span>
-        <strong id="summaryBills">1</strong>
-    </div>
+<div class="summaryRow">
+<span>Today's Bills</span>
+<strong>1</strong>
+</div>
 
-    <div class="summaryRow">
-        <span>Remaining After Bills</span>
-        <strong id="summaryRemaining">S$575.20</strong>
-    </div>
-
-</section>
-
-    <section class="card">
-
-        <h2>Upcoming Bills</h2>
-
-        <div id="billList">
-
-        </div>
-
-    </section>
+<div class="summaryRow">
+<span>Remaining</span>
+<strong>S$575.20</strong>
+</div>
 
 </div>
+
+<div class="card">
+
+<h2>Calendar</h2>
+
+<div id="calendar">
+
+<p style="opacity:.6">
+Calendar will appear here in the next update.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<nav class="bottom-nav">
+
+<div class="nav-btn">
+🏠
+<br>
+Home
+</div>
+
+<div class="nav-btn">
+📅
+<br>
+Calendar
+</div>
+
+<div class="add-btn">
++
+</div>
+
+<div class="nav-btn">
+📊
+<br>
+Reports
+</div>
+
+<div class="nav-btn">
+⚙️
+<br>
+Settings
+</div>
+
+</nav>
 
 <script src="app.js"></script>
 
