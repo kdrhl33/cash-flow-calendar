@@ -43,6 +43,8 @@ function buildCalendar(year, month) {
   const calendar = document.getElementById("calendar");
   calendar.innerHTML = "";
 
+  const transactions = getTransactionsForMonth(year, month);
+
   let balance = startingBalance;
 
   for (let day = 1; day <= getDaysInMonth(year, month); day++) {
