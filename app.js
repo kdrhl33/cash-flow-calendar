@@ -1,456 +1,79 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+let transactions = JSON.parse(
+    localStorage.getItem("cashflowTransactions")
+) || [];
 
 
-* {
-    box-sizing: border-box;
-}
+let startingBalance = Number(
+    localStorage.getItem("cashflowBalance")
+) || 0;
 
 
-body {
-
-    margin:0;
-
-    font-family:'Inter', sans-serif;
-
-    background:#f5f7fb;
-
-    color:#111827;
-
-    transition:0.3s;
-
-}
+let currentDate = new Date();
 
 
 
-.app {
+function saveAll(){
 
-    max-width:600px;
-
-    margin:auto;
-
-    padding:20px;
-
-    padding-bottom:120px;
-
-}
-
-
-
-
-
-header {
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-}
-
-
-header h1 {
-
-    font-size:28px;
-
-}
-
-
-
-
-
-#darkToggle {
-
-    width:45px;
-
-    height:45px;
-
-    border:none;
-
-    border-radius:50%;
-
-    background:#e5e7eb;
-
-    font-size:20px;
-
-}
-
-
-
-
-
-.balance-card {
-
-    margin-top:20px;
-
-    background:linear-gradient(
-        135deg,
-        #111827,
-        #374151
+    localStorage.setItem(
+        "cashflowTransactions",
+        JSON.stringify(transactions)
     );
 
-    color:white;
-
-    padding:25px;
-
-    border-radius:25px;
-
-}
-
-
-
-.balance-card h2 {
-
-    font-size:38px;
-
-    margin:10px 0 20px;
+    localStorage.setItem(
+        "cashflowBalance",
+        startingBalance
+    );
 
 }
 
 
 
+function money(value){
 
-
-.next-bill {
-
-    border-top:1px solid rgba(255,255,255,.25);
-
-    padding-top:15px;
+    return "S$" + Number(value).toFixed(2);
 
 }
 
 
 
-.next-bill strong {
+function render(){
 
-    font-size:22px;
+    renderCalendar();
 
-}
+    renderTransactions();
 
+    updateSummary();
 
+    updateNextBill();
 
-
-
-.card {
-
-    background:white;
-
-    margin-top:20px;
-
-    padding:20px;
-
-    border-radius:22px;
-
-    box-shadow:0 5px 15px rgba(0,0,0,.05);
+    document.getElementById("balance").innerHTML =
+    money(calculateBalance());
 
 }
 
 
 
+function calculateBalance(){
 
+    let balance = startingBalance;
 
-.card input,
-.card button,
-.modal-box input,
-.modal-box select {
 
+    transactions.forEach(t=>{
 
-    width:100%;
+        if(t.type === "income"){
 
-    padding:13px;
+            balance += Number(t.amount);
 
-    margin-top:10px;
+        }else{
 
-    border-radius:12px;
+            balance -= Number(t.amount);
 
-    border:1px solid #ddd;
+        }
 
-    font-size:15px;
+    });
 
-}
 
-
-
-
-
-.card button,
-.modal-box button {
-
-    background:#111827;
-
-    color:white;
-
-    border:none;
-
-    cursor:pointer;
-
-}
-
-
-
-
-
-.summary {
-
-    display:flex;
-
-    gap:15px;
-
-    margin-top:20px;
-
-}
-
-
-
-.summary div {
-
-    flex:1;
-
-    background:white;
-
-    padding:18px;
-
-    border-radius:20px;
-
-}
-
-
-
-
-
-.calendar-top {
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-}
-
-
-
-.calendar-top button {
-
-    width:40px;
-
-    height:40px;
-
-    border:none;
-
-    border-radius:12px;
-
-    font-size:25px;
-
-}
-
-
-
-
-
-#calendar {
-
-    margin-top:15px;
-
-    display:grid;
-
-    grid-template-columns:repeat(7,1fr);
-
-    gap:8px;
-
-}
-
-
-
-
-
-.day {
-
-    background:#f9fafb;
-
-    border-radius:14px;
-
-    min-height:90px;
-
-    padding:8px;
-
-    font-size:12px;
-
-    display:flex;
-
-    flex-direction:column;
-
-}
-
-
-
-.day strong {
-
-    font-size:14px;
-
-}
-
-
-
-
-
-.income {
-
-    color:#16a34a;
-
-    margin-top:8px;
-
-    font-size:11px;
-
-}
-
-
-
-.expense {
-
-    color:#dc2626;
-
-    margin-top:8px;
-
-    font-size:11px;
-
-}
-
-
-
-.balance {
-
-    margin-top:auto;
-
-    font-size:10px;
-
-    color:#6b7280;
-
-}
-
-
-
-
-
-.transaction {
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    padding:12px 0;
-
-    border-bottom:1px solid #eee;
-
-}
-
-
-
-.transaction button {
-
-    border:none;
-
-    background:none;
-
-    font-size:18px;
-
-}
-
-
-
-
-
-.empty {
-
-    text-align:center;
-
-    color:#9ca3af;
-
-}
-
-
-
-
-
-.floating-add {
-
-    position:fixed;
-
-    right:25px;
-
-    bottom:30px;
-
-    width:65px;
-
-    height:65px;
-
-    border-radius:50%;
-
-    border:none;
-
-    background:#111827;
-
-    color:white;
-
-    font-size:35px;
-
-    box-shadow:0 10px 20px rgba(0,0,0,.25);
-
-}
-
-
-
-
-
-.modal {
-
-    display:none;
-
-    position:fixed;
-
-    inset:0;
-
-    background:rgba(0,0,0,.5);
-
-    justify-content:center;
-
-    align-items:center;
-
-}
-
-
-
-
-
-.modal-box {
-
-    background:white;
-
-    width:90%;
-
-    max-width:400px;
-
-    padding:25px;
-
-    border-radius:25px;
-
-}
-
-
-
-
-
-.check {
-
-    display:flex;
-
-    align-items:center;
-
-    gap:10px;
-
-    margin-top:15px;
+    return balance;
 
 }
 
@@ -459,65 +82,465 @@ header h1 {
 
 
 
-/* DARK MODE */
+function renderCalendar(){
+
+    const calendar =
+    document.getElementById("calendar");
+
+    calendar.innerHTML="";
 
 
-body.dark {
+    let year=currentDate.getFullYear();
 
-    background:#111827;
+    let month=currentDate.getMonth();
 
-    color:white;
+
+    document.getElementById("monthTitle").innerHTML =
+    currentDate.toLocaleString(
+        "default",
+        {
+            month:"long",
+            year:"numeric"
+        }
+    );
+
+
+
+    let days =
+    new Date(year,month+1,0).getDate();
+
+
+
+    let balance = startingBalance;
+
+
+
+    for(let day=1; day<=days; day++){
+
+
+        let date =
+        `${year}-${String(month+1).padStart(2,"0")}-${String(day).padStart(2,"0")}`;
+
+
+        let items="";
+
+
+        transactions.forEach(t=>{
+
+
+            let transactionDate =
+            new Date(t.date);
+
+
+            let match=false;
+
+
+            if(t.repeat){
+
+                match =
+                transactionDate.getDate() === day;
+
+            }else{
+
+                match =
+                t.date === date;
+
+            }
+
+
+
+            if(match){
+
+
+                if(t.type==="income"){
+
+                    balance += Number(t.amount);
+
+
+                    items +=
+                    `
+                    <div class="income">
+                    +${t.name}<br>
+                    ${money(t.amount)}
+                    </div>
+                    `;
+
+
+                }else{
+
+
+                    balance -= Number(t.amount);
+
+
+                    items +=
+                    `
+                    <div class="expense">
+                    ${t.name}<br>
+                    -${money(t.amount)}
+                    </div>
+                    `;
+
+                }
+
+            }
+
+
+        });
+
+
+
+        let box=document.createElement("div");
+
+        box.className="day";
+
+
+        box.innerHTML =
+        `
+        <strong>${day}</strong>
+
+        ${items}
+
+        <div class="balance">
+        ${money(balance)}
+        </div>
+        `;
+
+
+        calendar.appendChild(box);
+
+
+    }
+
 
 }
 
 
 
-body.dark .card,
-body.dark .summary div,
-body.dark .modal-box {
 
-    background:#1f2937;
 
-    color:white;
+
+
+function renderTransactions(){
+
+    let list =
+    document.getElementById("transactionList");
+
+
+    list.innerHTML="";
+
+
+
+    if(transactions.length===0){
+
+        list.innerHTML =
+        `
+        <p class="empty">
+        No transactions yet
+        </p>
+        `;
+
+        return;
+
+    }
+
+
+
+    transactions.forEach(t=>{
+
+
+        let row=document.createElement("div");
+
+        row.className="transaction";
+
+
+        row.innerHTML =
+        `
+        <div>
+
+        <b>${t.name}</b>
+
+        <br>
+
+        ${t.type==="income" ? "+" : "-"}
+        ${money(t.amount)}
+
+        </div>
+
+
+        <div>
+
+        <button onclick="editTransaction(${t.id})">
+        ✏️
+        </button>
+
+        <button onclick="deleteTransaction(${t.id})">
+        🗑️
+        </button>
+
+        </div>
+        `;
+
+
+        list.appendChild(row);
+
+
+    });
+
+
+}
+
+
+
+
+
+
+
+
+function updateSummary(){
+
+    let income=0;
+
+    let expense=0;
+
+
+
+    transactions.forEach(t=>{
+
+        if(t.type==="income"){
+
+            income += Number(t.amount);
+
+        }else{
+
+            expense += Number(t.amount);
+
+        }
+
+    });
+
+
+
+    document.getElementById("incomeTotal")
+    .innerHTML=money(income);
+
+
+
+    document.getElementById("expenseTotal")
+    .innerHTML=money(expense);
+
 
 }
 
 
 
-body.dark .day {
 
-    background:#374151;
 
-    color:white;
+
+
+function updateNextBill(){
+
+
+    let bills =
+    transactions.filter(
+        t=>t.type==="expense"
+    );
+
+
+    if(bills.length===0){
+
+        document.getElementById("nextBillName")
+        .innerHTML="No bills yet";
+
+
+        document.getElementById("nextBillAmount")
+        .innerHTML="S$0.00";
+
+
+        document.getElementById("afterBill")
+        .innerHTML=money(startingBalance);
+
+
+        return;
+
+    }
+
+
+
+    let bill=bills[0];
+
+
+    document.getElementById("nextBillName")
+    .innerHTML=bill.name;
+
+
+    document.getElementById("nextBillAmount")
+    .innerHTML="-"+money(bill.amount);
+
+
+    document.getElementById("afterBill")
+    .innerHTML=
+    money(startingBalance-bill.amount);
+
+
+}
+
+
+
+
+
+
+
+
+document.getElementById("saveBalance").onclick=function(){
+
+    startingBalance =
+    Number(
+        document.getElementById("startingBalanceInput").value
+    );
+
+
+    saveAll();
+
+
+    render();
+
+
+    alert("Balance saved");
+
+};
+
+
+
+
+
+
+
+
+document.getElementById("saveTransaction").onclick=function(){
+
+
+    let name =
+    document.getElementById("nameInput").value;
+
+
+    let amount =
+    Number(
+        document.getElementById("amountInput").value
+    );
+
+
+    let type =
+    document.getElementById("typeInput").value;
+
+
+    let date =
+    document.getElementById("dateInput").value;
+
+
+    let repeat =
+    document.getElementById("repeatInput").checked;
+
+
+
+    if(!name || !amount || !date){
+
+        alert("Please fill everything");
+
+        return;
+
+    }
+
+
+
+    transactions.push({
+
+        id:Date.now(),
+
+        name,
+
+        amount,
+
+        type,
+
+        date,
+
+        repeat
+
+    });
+
+
+
+    saveAll();
+
+    render();
+
+
+    document.getElementById("modal")
+    .style.display="none";
+
+
+};
+
+
+
+
+
+
+
+function editTransaction(id){
+
+    let t =
+    transactions.find(
+        x=>x.id===id
+    );
+
+
+    let name =
+    prompt("Name",t.name);
+
+
+    let amount =
+    prompt("Amount",t.amount);
+
+
+
+    if(name){
+
+        t.name=name;
+
+    }
+
+
+    if(amount){
+
+        t.amount=Number(amount);
+
+    }
+
+
+    saveAll();
+
+    render();
+
 
 }
 
 
 
-body.dark .balance {
-
-    color:#d1d5db;
-
-}
 
 
 
-body.dark input,
-body.dark select {
+function deleteTransaction(id){
 
-    background:#374151;
-
-    color:white;
-
-    border-color:#4b5563;
-
-}
+    transactions =
+    transactions.filter(
+        t=>t.id!==id
+    );
 
 
+    saveAll();
 
-body.dark #darkToggle {
-
-    background:#374151;
+    render();
 
 }
 
@@ -526,32 +549,94 @@ body.dark #darkToggle {
 
 
 
-@media(max-width:500px){
 
 
-.app {
+document.getElementById("openForm")
+.onclick=function(){
 
-    padding:15px;
+    document.getElementById("modal")
+    .style.display="flex";
+
+};
+
+
+
+
+document.getElementById("closeForm")
+.onclick=function(){
+
+    document.getElementById("modal")
+    .style.display="none";
+
+};
+
+
+
+
+
+
+document.getElementById("prevMonth")
+.onclick=function(){
+
+    currentDate.setMonth(
+        currentDate.getMonth()-1
+    );
+
+    render();
+
+};
+
+
+
+
+
+document.getElementById("nextMonth")
+.onclick=function(){
+
+    currentDate.setMonth(
+        currentDate.getMonth()+1
+    );
+
+    render();
+
+};
+
+
+
+
+
+
+
+document.getElementById("darkToggle")
+.onclick=function(){
+
+    document.body.classList.toggle("dark");
+
+
+    localStorage.setItem(
+        "darkMode",
+        document.body.classList.contains("dark")
+    );
+
+};
+
+
+
+
+
+if(localStorage.getItem("darkMode")==="true"){
+
+    document.body.classList.add("dark");
 
 }
 
 
 
-.balance-card h2 {
-
-    font-size:32px;
-
-}
 
 
-
-.day {
-
-    min-height:75px;
-
-    font-size:10px;
-
-}
+document.getElementById("startingBalanceInput")
+.value = startingBalance;
 
 
-}
+
+render();
