@@ -1,317 +1,252 @@
-let startingBalance = 819.35;
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
 
-let recurringTransactions = [
+<meta charset="UTF-8">
 
-  {
-    day: 12,
-    amount: 3200,
-    type: "income",
-    name: "Salary"
-  },
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  {
-    day: 25,
-    amount: 244.15,
-    type: "expense",
-    name: "Great Eastern"
-  }
+<title>CashFlow Calendar</title>
 
-];
+<link rel="stylesheet" href="style.css">
 
+</head>
 
 
-function getTransactionsForMonth(year, month){
+<body>
 
-  return recurringTransactions.map(item => {
 
-    return {
+<div class="app">
 
-      date:
-      `${year}-${String(month + 1).padStart(2,"0")}-${String(item.day).padStart(2,"0")}`,
 
-      amount: item.amount,
+<header>
 
-      type: item.type,
+<h1>
+💰 CashFlow
+</h1>
 
-      name: item.name
+<button id="darkToggle">
+🌙
+</button>
 
-    };
+</header>
 
-  });
 
-}
 
+<section class="balance-card">
 
+<p>
+Current Balance
+</p>
 
+<h2 id="balance">
+S$819.35
+</h2>
 
-function getDaysInMonth(year, month){
 
-  return new Date(year, month + 1, 0).getDate();
+<div class="next-bill">
 
-}
+<p>
+Next Bill
+</p>
 
+<h3 id="nextBillName">
+Great Eastern
+</h3>
 
+<span id="nextBillAmount">
+-S$244.15
+</span>
 
 
-function buildCalendar(year, month){
+<p>
+After Bill
+</p>
 
+<strong id="afterBill">
+S$575.20
+</strong>
 
-  const calendar = document.getElementById("calendar");
+</div>
 
-  calendar.innerHTML = "";
 
+</section>
 
-  const transactions = getTransactionsForMonth(year, month);
 
 
-  let balance = startingBalance;
 
+<section class="summary">
 
+<div>
 
-  for(let day = 1; day <= getDaysInMonth(year, month); day++){
+<p>
+Income
+</p>
 
+<h3 id="incomeTotal">
+S$0
+</h3>
 
-    const dateString =
-    `${year}-${String(month + 1).padStart(2,"0")}-${String(day).padStart(2,"0")}`;
+</div>
 
 
+<div>
 
-    let dailyItems = "";
+<p>
+Expenses
+</p>
 
+<h3 id="expenseTotal">
+S$0
+</h3>
 
+</div>
 
-    transactions.forEach(item => {
 
+</section>
 
-      if(item.date === dateString){
 
 
-        if(item.type === "income"){
 
-          balance += item.amount;
 
+<section class="card">
 
-          dailyItems +=
-          `
-          <div class="income">
-          +${item.name}<br>
-          S$${item.amount.toFixed(2)}
-          </div>
-          `;
 
-        }
+<div class="calendar-top">
 
+<button id="prevMonth">
+‹
+</button>
 
 
-        if(item.type === "expense"){
+<h2 id="monthTitle">
+July 2026
+</h2>
 
-          balance -= item.amount;
 
+<button id="nextMonth">
+›
+</button>
 
-          dailyItems +=
-          `
-          <div class="expense">
-          ${item.name}<br>
-          -S$${item.amount.toFixed(2)}
-          </div>
-          `;
 
-        }
+</div>
 
 
-      }
 
+<div id="calendar">
 
-    });
+</div>
 
 
+</section>
 
-    const box = document.createElement("div");
 
 
-    box.className = "day";
 
 
 
-    box.innerHTML =
+<section class="card">
 
-    `
-    <strong>${day}</strong>
 
-    ${dailyItems}
+<h2>
+Transactions
+</h2>
 
-    <div class="balance">
-    Balance<br>
-    S$${balance.toFixed(2)}
-    </div>
 
-    `;
+<div id="transactionList">
 
+</div>
 
 
-    calendar.appendChild(box);
+</section>
 
 
-  }
 
 
-  updateBalance(balance);
 
-}
 
+<button class="floating-add" id="openForm">
 
++
+</button>
 
 
 
-function updateBalance(balance){
 
-  document.getElementById("balance").innerHTML =
-  "S$" + balance.toFixed(2);
 
-}
+<div class="modal" id="modal">
 
 
+<div class="modal-box">
 
 
+<h2>
+Add Transaction
+</h2>
 
-let currentYear = 2026;
 
-let currentMonth = 6;
 
+<input id="nameInput" placeholder="Name">
 
 
+<input id="amountInput" placeholder="Amount">
 
-function updateMonthTitle(){
 
-  document.getElementById("monthTitle").innerHTML =
 
-  new Date(currentYear,currentMonth)
+<select id="typeInput">
 
-  .toLocaleString("default",
-  {
-    month:"long",
-    year:"numeric"
-  });
+<option value="expense">
+Expense
+</option>
 
-}
+<option value="income">
+Income
+</option>
 
+</select>
 
 
 
 
-document.getElementById("prevMonth").onclick = function(){
+<input id="dateInput" type="date">
 
 
-  currentMonth--;
 
+<label>
 
-  if(currentMonth < 0){
+<input type="checkbox" id="repeatInput">
 
-    currentMonth = 11;
+Repeat monthly
 
-    currentYear--;
+</label>
 
-  }
 
 
-  updateMonthTitle();
 
-  buildCalendar(currentYear,currentMonth);
+<button id="saveTransaction">
+Save
+</button>
 
 
-};
+<button id="closeForm">
+Cancel
+</button>
 
 
 
+</div>
 
 
+</div>
 
-document.getElementById("nextMonth").onclick = function(){
 
 
-  currentMonth++;
 
 
-  if(currentMonth > 11){
+<script src="app.js"></script>
 
-    currentMonth = 0;
 
-    currentYear++;
+</body>
 
-  }
-
-
-  updateMonthTitle();
-
-  buildCalendar(currentYear,currentMonth);
-
-
-};
-
-
-
-
-
-
-document.getElementById("addTransaction").onclick = function(){
-
-
-  const name =
-  document.getElementById("transactionName").value;
-
-
-  const amount =
-  Number(document.getElementById("transactionAmount").value);
-
-
-  const type =
-  document.getElementById("transactionType").value;
-
-
-  const day =
-  Number(document.getElementById("transactionDay").value);
-
-
-
-  if(!name || !amount || !day){
-
-    alert("Please fill in all fields");
-
-    return;
-
-  }
-
-
-
-  recurringTransactions.push({
-
-    day: day,
-
-    amount: amount,
-
-    type: type,
-
-    name: name
-
-  });
-
-
-
-  buildCalendar(currentYear,currentMonth);
-
-
-
-  alert("Transaction added");
-
-
-};
-
-
-
-
-
-
-updateMonthTitle();
-
-buildCalendar(currentYear,currentMonth);
+</html>
