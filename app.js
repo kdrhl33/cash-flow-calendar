@@ -1,64 +1,60 @@
-const currentBalance = 819.35;
+const startingBalance = 819.35;
 
-const bills = [
-    { date: 1, name: "iCloud", amount: 14.37 },
-    { date: 5, name: "Netflix", amount: 29.98 },
-    { date: 7, name: "Amazon Prime", amount: 4.99 },
-    { date: 8, name: "IRAS", amount: 181.70 },
-    { date: 15, name: "Spotify", amount: 11.98 },
-    { date: 20, name: "House Bills", amount: 300.00 },
-    { date: 21, name: "Prudential", amount: 299.98 },
-    { date: 22, name: "Disney+", amount: 23.62 },
-    { date: 23, name: "StarHub Phone", amount: 35.50 },
-    { date: 26, name: "Great Eastern", amount: 244.15 },
-    { date: 29, name: "HDB Parking", amount: 17.00 },
-    { date: 31, name: "PSN", amount: 15.90 }
+const transactions = [
+  {
+    date: "2026-07-12",
+    amount: 3200,
+    type: "income",
+    name: "Salary"
+  },
+  {
+    date: "2026-07-25",
+    amount: 26.48,
+    type: "expense",
+    name: "Bill"
+  }
 ];
 
-const today = new Date().getDate();
-const billList = document.getElementById("billList");
-const nextBillName = document.getElementById("nextBillName");
-const nextBillAmount = document.getElementById("nextBillAmount");
-const balanceAfterBill = document.getElementById("balanceAfterBill");
-
-billList.innerHTML = "";
-
-const upcomingBills = bills.filter(bill => bill.date >= today);
-
-if (upcomingBills.length > 0) {
-
-    nextBillName.textContent = upcomingBills[0].name;
-
-    nextBillAmount.textContent =
-        "-S$" + upcomingBills[0].amount.toFixed(2);
-
-    const remaining =
-        currentBalance - upcomingBills[0].amount;
-
-    balanceAfterBill.textContent =
-        "S$" + remaining.toFixed(2);
-
+function getDaysInMonth(year, month) {
+  return new Date(year, month + 1, 0).getDate();
 }
 
-upcomingBills.forEach(bill => {
+function buildCalendar(year, month) {
+  const calendar = document.getElementById("calendar");
 
-    const div = document.createElement("div");
+  if (!calendar) {
+    console.log("Calendar element not found");
+    return;
+  }
 
-    div.className = "bill";
+  calendar.innerHTML = "";
 
-    if (bill.date === today) {
-        div.style.background = "#334155";
-        div.style.borderRadius = "10px";
-    }
+  let balance = startingBalance;
 
-    div.innerHTML = `
-        <span>
-            <strong>${bill.date}</strong> • ${bill.name}
-        </span>
+  for (let day = 1; day <= getDaysInMonth(year, month); day++) {
+    const dateString = `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
 
-        <strong>-S$${bill.amount.toFixed(2)}</strong>
+    transactions.forEach(item => {
+      if (item.date === dateString) {
+        if (item.type === "income") {
+          balance += item.amount;
+        } else {
+          balance -= item.amount;
+        }
+      }
+    });
+
+    const box = document.createElement("div");
+    box.className = "day";
+
+    box.innerHTML = `
+      <strong>${day}</strong>
+      <br>
+      Balance: $${balance.toFixed(2)}
     `;
 
-    billList.appendChild(div);
+    calendar.appendChild(box);
+  }
+}
 
-});
+buildCalendar(2026, 6);
