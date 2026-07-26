@@ -296,3 +296,14 @@ right:10px;
 .day {
   box-sizing: border-box;
 }
+
+.balance {
+  margin-top: 10px;
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.day {
+  display: flex;
+  flex-direction: column;
+}
