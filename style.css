@@ -283,3 +283,16 @@ right:10px;
   font-size: 12px;
   margin-top: 5px;
 }
+
+.card {
+  overflow: hidden;
+}
+
+#calendar {
+  margin-top: 15px;
+  padding-bottom: 10px;
+}
+
+.day {
+  box-sizing: border-box;
+}
