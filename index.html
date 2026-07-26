@@ -62,11 +62,38 @@ S$0.00
 S$0.00
 </strong>
 
-
 </div>
+
+</section>
+
+
+
+
+
+
+
+<section class="card">
+
+<h2>
+Set Current Balance
+</h2>
+
+
+<input 
+id="startingBalanceInput"
+type="number"
+placeholder="Example: 1000"
+>
+
+
+<button id="saveBalance">
+Save Balance
+</button>
 
 
 </section>
+
+
 
 
 
@@ -78,7 +105,9 @@ S$0.00
 
 <div>
 
-<p>Income</p>
+<p>
+Income
+</p>
 
 <h3 id="incomeTotal">
 S$0.00
@@ -87,10 +116,11 @@ S$0.00
 </div>
 
 
-
 <div>
 
-<p>Expenses</p>
+<p>
+Expenses
+</p>
 
 <h3 id="expenseTotal">
 S$0.00
@@ -99,8 +129,9 @@ S$0.00
 </div>
 
 
-
 </section>
+
+
 
 
 
@@ -145,6 +176,8 @@ S$0.00
 
 
 
+
+
 <section class="card">
 
 
@@ -171,11 +204,13 @@ No transactions yet
 
 
 
+
 <button class="floating-add" id="openForm">
 
 +
 
 </button>
+
 
 
 
@@ -196,29 +231,25 @@ Add Transaction
 
 
 
-<label>
-Name
-</label>
 
-<input id="nameInput" placeholder="Example: Salary">
-
-
-
-
-
-<label>
-Amount
-</label>
-
-<input id="amountInput" type="number" placeholder="0.00">
+<input 
+id="nameInput"
+placeholder="Name"
+/>
 
 
 
 
 
-<label>
-Type
-</label>
+<input 
+id="amountInput"
+type="number"
+placeholder="Amount"
+/>
+
+
+
+
 
 <select id="typeInput">
 
@@ -239,12 +270,10 @@ Expense
 
 
 
-<label>
-Date
-</label>
-
-<input id="dateInput" type="date">
-
+<input 
+id="dateInput"
+type="date"
+/>
 
 
 
@@ -252,13 +281,14 @@ Date
 
 <label class="check">
 
-<input type="checkbox" id="repeatInput">
+<input 
+type="checkbox"
+id="repeatInput"
+>
 
 Repeat monthly
 
 </label>
-
-
 
 
 
@@ -272,8 +302,6 @@ Save
 <button id="closeForm">
 Cancel
 </button>
-
-
 
 
 
