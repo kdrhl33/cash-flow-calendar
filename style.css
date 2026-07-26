@@ -1,0 +1,82 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+body {
+    background: #0f172a;
+    color: white;
+    padding: 20px;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    font-size: 28px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.card {
+    background: #1e293b;
+    border-radius: 18px;
+    padding: 18px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+}
+
+.balance-card {
+    background: linear-gradient(135deg,#2563eb,#1d4ed8);
+}
+
+.balance {
+    font-size: 42px;
+    font-weight: bold;
+    margin: 12px 0;
+}
+
+.nextBill {
+    background: rgba(255,255,255,0.12);
+    padding: 12px;
+    border-radius: 12px;
+    margin-top: 10px;
+}
+
+button {
+    width: 100%;
+    padding: 15px;
+    margin-top: 12px;
+    border: none;
+    border-radius: 14px;
+    background: #2563eb;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
+
+#billList {
+    margin-top: 12px;
+}
+
+.bill {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px;
+    border-bottom: 1px solid #334155;
+}
+
+.bill:last-child {
+    border-bottom: none;
+}
