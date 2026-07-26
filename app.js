@@ -15,7 +15,6 @@ const recurringTransactions = [
   }
 ];
 
-
 function getTransactionsForMonth(year, month) {
 
   let list = [];
@@ -34,56 +33,90 @@ function getTransactionsForMonth(year, month) {
   return list;
 }
 
+
 function getDaysInMonth(year, month) {
   return new Date(year, month + 1, 0).getDate();
 }
 
+
 function buildCalendar(year, month) {
+
   const calendar = document.getElementById("calendar");
+
   calendar.innerHTML = "";
 
   const transactions = getTransactionsForMonth(year, month);
 
   let balance = startingBalance;
 
+
   for (let day = 1; day <= getDaysInMonth(year, month); day++) {
 
-    const dateString = `${year}-${String(month + 1).padStart(2,"0")}-${String(day).padStart(2,"0")}`;
+    const dateString =
+      `${year}-${String(month + 1).padStart(2,"0")}-${String(day).padStart(2,"0")}`;
+
 
     let dailyItems = "";
 
-    transactions.forEach(item => {
-      if(item.date === dateString){
 
-        if(item.type === "income"){
+    transactions.forEach(item => {
+
+      if (item.date === dateString) {
+
+        if (item.type === "income") {
+
           balance += item.amount;
-          dailyItems += `<div class="income">+${item.name}<br>S$${item.amount}</div>`;
+
+          dailyItems += `
+            <div class="income">
+              +${item.name}<br>
+              S$${item.amount.toFixed(2)}
+            </div>
+          `;
+
         }
 
-        if(item.type === "expense"){
+
+        if (item.type === "expense") {
+
           balance -= item.amount;
-          dailyItems += `<div class="expense">${item.name}<br>-S$${item.amount}</div>`;
+
+          dailyItems += `
+            <div class="expense">
+              ${item.name}<br>
+              -S$${item.amount.toFixed(2)}
+            </div>
+          `;
+
         }
 
       }
+
     });
 
 
     const box = document.createElement("div");
+
     box.className = "day";
 
+
     box.innerHTML = `
-  <strong>${day}</strong>
+      <strong>${day}</strong>
 
-  ${dailyItems}
+      ${dailyItems}
 
-  <div class="balance">
-    S$${balance.toFixed(2)}
-  </div>
-`;
+      <div class="balance">
+        Balance<br>
+        S$${balance.toFixed(2)}
+      </div>
+    `;
+
 
     calendar.appendChild(box);
+
   }
+
 }
 
-buildCalendar(2026,6);
+
+buildCalendar(2026, 6);
