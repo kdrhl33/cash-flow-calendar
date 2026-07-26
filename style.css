@@ -1,307 +1,252 @@
-* {
-  box-sizing: border-box;
-}
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
 
-body {
+<meta charset="UTF-8">
 
-  margin: 0;
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  font-family: Arial, sans-serif;
+<title>CashFlow Calendar</title>
 
-  background: #f5f5f5;
+<link rel="stylesheet" href="style.css">
 
-  color: #222;
+</head>
 
-}
 
+<body>
 
 
-.container {
+<div class="app">
 
-  padding: 20px;
 
-  padding-bottom: 100px;
+<header>
 
-}
+<h1>
+💰 CashFlow
+</h1>
 
+<button id="darkToggle">
+🌙
+</button>
 
+</header>
 
-.title {
 
-  text-align: center;
 
-  margin-bottom: 20px;
+<section class="balance-card">
 
-}
+<p>
+Current Balance
+</p>
 
+<h2 id="balance">
+S$819.35
+</h2>
 
 
-.balance-card,
-.card {
+<div class="next-bill">
 
-  background: white;
+<p>
+Next Bill
+</p>
 
-  border-radius: 18px;
+<h3 id="nextBillName">
+Great Eastern
+</h3>
 
-  padding: 20px;
+<span id="nextBillAmount">
+-S$244.15
+</span>
 
-  margin-bottom: 20px;
 
-  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+<p>
+After Bill
+</p>
 
-}
+<strong id="afterBill">
+S$575.20
+</strong>
 
+</div>
 
 
-.balance-card h2 {
+</section>
 
-  font-size: 32px;
 
-  margin: 10px 0;
 
-}
 
+<section class="summary">
 
+<div>
 
-.next-card {
+<p>
+Income
+</p>
 
-  margin-top: 15px;
+<h3 id="incomeTotal">
+S$0
+</h3>
 
-  padding-top: 15px;
+</div>
 
-  border-top: 1px solid #ddd;
 
-}
+<div>
 
+<p>
+Expenses
+</p>
 
+<h3 id="expenseTotal">
+S$0
+</h3>
 
-.calendar-header {
+</div>
 
-  display: flex;
 
-  justify-content: space-between;
+</section>
 
-  align-items: center;
 
-  margin-bottom: 15px;
 
-}
 
 
+<section class="card">
 
-.calendar-header button {
 
-  border: none;
+<div class="calendar-top">
 
-  background: #eee;
+<button id="prevMonth">
+‹
+</button>
 
-  border-radius: 10px;
 
-  padding: 8px 15px;
+<h2 id="monthTitle">
+July 2026
+</h2>
 
-  font-size: 18px;
 
-}
+<button id="nextMonth">
+›
+</button>
 
 
+</div>
 
-#calendar {
 
-  display: grid;
 
-  grid-template-columns: repeat(7, 1fr);
+<div id="calendar">
 
-  gap: 8px;
+</div>
 
-}
 
+</section>
 
 
-.day {
 
-  background: #fff;
 
-  border-radius: 12px;
 
-  min-height: 100px;
 
-  padding: 8px;
+<section class="card">
 
-  font-size: 13px;
 
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+<h2>
+Transactions
+</h2>
 
-  display: flex;
 
-  flex-direction: column;
+<div id="transactionList">
 
-}
+</div>
 
 
+</section>
 
-.day strong {
 
-  font-size: 15px;
 
-}
 
 
 
-.income {
+<button class="floating-add" id="openForm">
 
-  margin-top: 8px;
++
+</button>
 
-  color: green;
 
-  font-size: 12px;
 
-}
 
 
+<div class="modal" id="modal">
 
-.expense {
 
-  margin-top: 8px;
+<div class="modal-box">
 
-  color: red;
 
-  font-size: 12px;
+<h2>
+Add Transaction
+</h2>
 
-}
 
 
+<input id="nameInput" placeholder="Name">
 
-.balance {
 
-  margin-top: auto;
+<input id="amountInput" placeholder="Amount">
 
-  padding-top: 8px;
 
-  font-size: 11px;
 
-  color: #666;
+<select id="typeInput">
 
-}
+<option value="expense">
+Expense
+</option>
 
+<option value="income">
+Income
+</option>
 
+</select>
 
-input,
-select {
 
-  width: 100%;
 
-  padding: 12px;
 
-  margin-bottom: 10px;
+<input id="dateInput" type="date">
 
-  border-radius: 10px;
 
-  border: 1px solid #ddd;
 
-  font-size: 16px;
+<label>
 
-}
+<input type="checkbox" id="repeatInput">
 
+Repeat monthly
 
+</label>
 
-#addTransaction {
 
-  width: 100%;
 
-  padding: 12px;
 
-  border: none;
+<button id="saveTransaction">
+Save
+</button>
 
-  border-radius: 10px;
 
-  background: black;
+<button id="closeForm">
+Cancel
+</button>
 
-  color: white;
 
-  font-size: 16px;
 
-}
+</div>
 
 
+</div>
 
-.bottom-nav {
 
-  position: fixed;
 
-  bottom: 0;
 
-  left: 0;
 
-  width: 100%;
+<script src="app.js"></script>
 
-  height: 70px;
 
-  background: white;
+</body>
 
-  display: flex;
-
-  justify-content: space-around;
-
-  align-items: center;
-
-  box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-
-}
-
-
-
-.nav-btn {
-
-  text-align: center;
-
-  font-size: 12px;
-
-}
-
-
-
-.add-btn {
-
-  background: black;
-
-  color: white;
-
-  width: 55px;
-
-  height: 55px;
-
-  border-radius: 50%;
-
-  display: flex;
-
-  justify-content: center;
-
-  align-items: center;
-
-  font-size: 30px;
-
-}
-
-
-
-@media(max-width:600px){
-
-  #calendar {
-
-    grid-template-columns: repeat(7, 1fr);
-
-  }
-
-
-  .day {
-
-    min-height: 80px;
-
-    font-size: 11px;
-
-    padding: 5px;
-
-  }
-
-}
+</html>
