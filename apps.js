@@ -17,10 +17,28 @@ const bills = [
 
 const today = new Date().getDate();
 const billList = document.getElementById("billList");
+const nextBillName = document.getElementById("nextBillName");
+const nextBillAmount = document.getElementById("nextBillAmount");
+const balanceAfterBill = document.getElementById("balanceAfterBill");
 
 billList.innerHTML = "";
 
 const upcomingBills = bills.filter(bill => bill.date >= today);
+
+if (upcomingBills.length > 0) {
+
+    nextBillName.textContent = upcomingBills[0].name;
+
+    nextBillAmount.textContent =
+        "-S$" + upcomingBills[0].amount.toFixed(2);
+
+    const remaining =
+        currentBalance - upcomingBills[0].amount;
+
+    balanceAfterBill.textContent =
+        "S$" + remaining.toFixed(2);
+
+}
 
 upcomingBills.forEach(bill => {
 
