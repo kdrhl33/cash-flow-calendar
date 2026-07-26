@@ -1,3 +1,5 @@
+const currentBalance = 819.35;
+
 const bills = [
     { date: 1, name: "iCloud", amount: 14.37 },
     { date: 5, name: "Netflix", amount: 29.98 },
@@ -13,16 +15,29 @@ const bills = [
     { date: 31, name: "PSN", amount: 15.90 }
 ];
 
+const today = new Date().getDate();
 const billList = document.getElementById("billList");
 
-bills.forEach(bill => {
+billList.innerHTML = "";
+
+const upcomingBills = bills.filter(bill => bill.date >= today);
+
+upcomingBills.forEach(bill => {
 
     const div = document.createElement("div");
 
     div.className = "bill";
 
+    if (bill.date === today) {
+        div.style.background = "#334155";
+        div.style.borderRadius = "10px";
+    }
+
     div.innerHTML = `
-        <span>${bill.date} - ${bill.name}</span>
+        <span>
+            <strong>${bill.date}</strong> • ${bill.name}
+        </span>
+
         <strong>-S$${bill.amount.toFixed(2)}</strong>
     `;
 
