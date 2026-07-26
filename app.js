@@ -631,12 +631,15 @@ if(localStorage.getItem("darkMode")==="true"){
 }
 
 
+const balanceInput =
+document.getElementById("startingBalanceInput");
 
 
+if(balanceInput){
 
-document.getElementById("startingBalanceInput")
-.value = startingBalance;
+    balanceInput.value = startingBalance;
 
+}
 
 
 render();
