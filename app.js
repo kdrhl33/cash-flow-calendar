@@ -52,11 +52,14 @@ function buildCalendar(year, month) {
     box.className = "day";
 
     box.innerHTML = `
-      <strong>${day}</strong>
-      <br>
-      ${dailyItems}
-      <small>S$${balance.toFixed(2)}</small>
-    `;
+  <strong>${day}</strong>
+
+  ${dailyItems}
+
+  <div class="balance">
+    S$${balance.toFixed(2)}
+  </div>
+`;
 
     calendar.appendChild(box);
   }
