@@ -1,56 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>CashFlow Calendar</title>
 
 <link rel="stylesheet" href="style.css">
+
 </head>
+
 
 <body>
 
-<div class="container">
 
-<h1 class="title">💰 CashFlow Calendar</h1>
+<div class="app">
 
 
-<div class="balance-card">
+<header>
 
-<p>Current Balance</p>
+<h1>
+💰 CashFlow
+</h1>
+
+<button id="darkToggle">
+🌙
+</button>
+
+</header>
+
+
+
+<section class="balance-card">
+
+<p>
+Current Balance
+</p>
 
 <h2 id="balance">
 S$819.35
 </h2>
 
-<div class="next-card">
 
-<p>Next Bill</p>
+<div class="next-bill">
+
+<p>
+Next Bill
+</p>
 
 <h3 id="nextBillName">
 Great Eastern
 </h3>
 
-<p id="nextBillAmount">
+<span id="nextBillAmount">
 -S$244.15
+</span>
+
+
+<p>
+After Bill
 </p>
 
-</div>
+<strong id="afterBill">
+S$575.20
+</strong>
 
 </div>
 
 
-
-<div class="card">
-
-<h2>Calendar</h2>
+</section>
 
 
-<div class="calendar-header">
+
+
+<section class="summary">
+
+<div>
+
+<p>
+Income
+</p>
+
+<h3 id="incomeTotal">
+S$0
+</h3>
+
+</div>
+
+
+<div>
+
+<p>
+Expenses
+</p>
+
+<h3 id="expenseTotal">
+S$0
+</h3>
+
+</div>
+
+
+</section>
+
+
+
+
+
+<section class="card">
+
+
+<div class="calendar-top">
 
 <button id="prevMonth">
-←
+‹
 </button>
 
 
@@ -60,31 +126,75 @@ July 2026
 
 
 <button id="nextMonth">
-→
+›
 </button>
 
-</div>
-
-
-<div id="calendar"></div>
-
 
 </div>
 
 
 
-<div class="card">
+<div id="calendar">
 
-<h2>Add Transaction</h2>
-
-
-<input id="transactionName" placeholder="Name">
+</div>
 
 
-<input id="transactionAmount" placeholder="Amount">
+</section>
 
 
-<select id="transactionType">
+
+
+
+
+<section class="card">
+
+
+<h2>
+Transactions
+</h2>
+
+
+<div id="transactionList">
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+<button class="floating-add" id="openForm">
+
++
+</button>
+
+
+
+
+
+<div class="modal" id="modal">
+
+
+<div class="modal-box">
+
+
+<h2>
+Add Transaction
+</h2>
+
+
+
+<input id="nameInput" placeholder="Name">
+
+
+<input id="amountInput" placeholder="Amount">
+
+
+
+<select id="typeInput">
 
 <option value="expense">
 Expense
@@ -97,61 +207,46 @@ Income
 </select>
 
 
-<input id="transactionDay" placeholder="Day of month">
 
 
-<button id="addTransaction">
-Add
+<input id="dateInput" type="date">
+
+
+
+<label>
+
+<input type="checkbox" id="repeatInput">
+
+Repeat monthly
+
+</label>
+
+
+
+
+<button id="saveTransaction">
+Save
 </button>
 
 
+<button id="closeForm">
+Cancel
+</button>
+
+
+
 </div>
 
 
 </div>
 
 
-
-<nav class="bottom-nav">
-
-<div class="nav-btn">
-🏠
-<br>
-Home
-</div>
-
-
-<div class="nav-btn">
-📅
-<br>
-Calendar
-</div>
-
-
-<div class="add-btn">
-+
-</div>
-
-
-<div class="nav-btn">
-📊
-<br>
-Reports
-</div>
-
-
-<div class="nav-btn">
-⚙️
-<br>
-Settings
-</div>
-
-
-</nav>
 
 
 
 <script src="app.js"></script>
 
+
 </body>
+
 </html>
