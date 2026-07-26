@@ -2,21 +2,21 @@
 
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 
 body {
 
-  margin: 0;
+    margin:0;
 
-  font-family: 'Inter', sans-serif;
+    font-family:'Inter', sans-serif;
 
-  background: #f4f6fb;
+    background:#f5f7fb;
 
-  color: #111827;
+    color:#111827;
 
-  transition: 0.3s;
+    transition:0.3s;
 
 }
 
@@ -24,53 +24,54 @@ body {
 
 .app {
 
-  max-width: 600px;
+    max-width:600px;
 
-  margin: auto;
+    margin:auto;
 
-  padding: 20px;
+    padding:20px;
 
-  padding-bottom: 120px;
+    padding-bottom:120px;
 
 }
+
+
 
 
 
 header {
 
-  display: flex;
+    display:flex;
 
-  justify-content: space-between;
+    justify-content:space-between;
 
-  align-items: center;
+    align-items:center;
 
 }
-
 
 
 header h1 {
 
-  font-size: 28px;
-
-  font-weight: 700;
+    font-size:28px;
 
 }
+
+
 
 
 
 #darkToggle {
 
-  width:45px;
+    width:45px;
 
-  height:45px;
+    height:45px;
 
-  border:none;
+    border:none;
 
-  border-radius:50%;
+    border-radius:50%;
 
-  background:#e5e7eb;
+    background:#e5e7eb;
 
-  font-size:20px;
+    font-size:20px;
 
 }
 
@@ -80,19 +81,19 @@ header h1 {
 
 .balance-card {
 
-  margin-top:20px;
+    margin-top:20px;
 
-  background:linear-gradient(
-  135deg,
-  #111827,
-  #374151
-  );
+    background:linear-gradient(
+        135deg,
+        #111827,
+        #374151
+    );
 
-  color:white;
+    color:white;
 
-  padding:25px;
+    padding:25px;
 
-  border-radius:25px;
+    border-radius:25px;
 
 }
 
@@ -100,9 +101,9 @@ header h1 {
 
 .balance-card h2 {
 
-  font-size:38px;
+    font-size:38px;
 
-  margin:10px 0 20px;
+    margin:10px 0 20px;
 
 }
 
@@ -112,9 +113,9 @@ header h1 {
 
 .next-bill {
 
-  border-top:1px solid rgba(255,255,255,.25);
+    border-top:1px solid rgba(255,255,255,.25);
 
-  padding-top:15px;
+    padding-top:15px;
 
 }
 
@@ -122,35 +123,7 @@ header h1 {
 
 .next-bill strong {
 
-  font-size:22px;
-
-}
-
-
-
-
-
-.summary {
-
-  display:flex;
-
-  gap:15px;
-
-  margin-top:20px;
-
-}
-
-
-
-.summary div {
-
-  flex:1;
-
-  background:white;
-
-  padding:18px;
-
-  border-radius:20px;
+    font-size:22px;
 
 }
 
@@ -160,13 +133,84 @@ header h1 {
 
 .card {
 
-  background:white;
+    background:white;
 
-  padding:20px;
+    margin-top:20px;
 
-  border-radius:22px;
+    padding:20px;
 
-  margin-top:20px;
+    border-radius:22px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.05);
+
+}
+
+
+
+
+
+.card input,
+.card button,
+.modal-box input,
+.modal-box select {
+
+
+    width:100%;
+
+    padding:13px;
+
+    margin-top:10px;
+
+    border-radius:12px;
+
+    border:1px solid #ddd;
+
+    font-size:15px;
+
+}
+
+
+
+
+
+.card button,
+.modal-box button {
+
+    background:#111827;
+
+    color:white;
+
+    border:none;
+
+    cursor:pointer;
+
+}
+
+
+
+
+
+.summary {
+
+    display:flex;
+
+    gap:15px;
+
+    margin-top:20px;
+
+}
+
+
+
+.summary div {
+
+    flex:1;
+
+    background:white;
+
+    padding:18px;
+
+    border-radius:20px;
 
 }
 
@@ -176,11 +220,11 @@ header h1 {
 
 .calendar-top {
 
-  display:flex;
+    display:flex;
 
-  justify-content:space-between;
+    justify-content:space-between;
 
-  align-items:center;
+    align-items:center;
 
 }
 
@@ -188,17 +232,15 @@ header h1 {
 
 .calendar-top button {
 
-  width:40px;
+    width:40px;
 
-  height:40px;
+    height:40px;
 
-  border:none;
+    border:none;
 
-  border-radius:12px;
+    border-radius:12px;
 
-  background:#e5e7eb;
-
-  font-size:25px;
+    font-size:25px;
 
 }
 
@@ -208,13 +250,13 @@ header h1 {
 
 #calendar {
 
-  display:grid;
+    margin-top:15px;
 
-  grid-template-columns:repeat(7,1fr);
+    display:grid;
 
-  gap:8px;
+    grid-template-columns:repeat(7,1fr);
 
-  margin-top:15px;
+    gap:8px;
 
 }
 
@@ -224,29 +266,27 @@ header h1 {
 
 .day {
 
-  background:#f9fafb;
+    background:#f9fafb;
 
-  border-radius:14px;
+    border-radius:14px;
 
-  min-height:90px;
+    min-height:90px;
 
-  padding:8px;
+    padding:8px;
 
-  display:flex;
+    font-size:12px;
 
-  flex-direction:column;
+    display:flex;
 
-  font-size:12px;
+    flex-direction:column;
 
 }
 
 
 
-
-
 .day strong {
 
-  font-size:14px;
+    font-size:14px;
 
 }
 
@@ -256,11 +296,11 @@ header h1 {
 
 .income {
 
-  color:#16a34a;
+    color:#16a34a;
 
-  margin-top:8px;
+    margin-top:8px;
 
-  font-size:11px;
+    font-size:11px;
 
 }
 
@@ -268,23 +308,23 @@ header h1 {
 
 .expense {
 
-  color:#dc2626;
+    color:#dc2626;
 
-  margin-top:8px;
+    margin-top:8px;
 
-  font-size:11px;
+    font-size:11px;
 
 }
 
 
 
-.day .balance {
+.balance {
 
-  margin-top:auto;
+    margin-top:auto;
 
-  color:#6b7280;
+    font-size:10px;
 
-  font-size:10px;
+    color:#6b7280;
 
 }
 
@@ -294,35 +334,27 @@ header h1 {
 
 .transaction {
 
-  display:flex;
+    display:flex;
 
-  justify-content:space-between;
+    justify-content:space-between;
 
-  align-items:center;
+    align-items:center;
 
-  padding:12px 0;
+    padding:12px 0;
 
-  border-bottom:1px solid #eee;
-
-}
-
-
-
-.transaction-name {
-
-  font-weight:600;
+    border-bottom:1px solid #eee;
 
 }
 
 
 
-.transaction-actions button {
+.transaction button {
 
-  border:none;
+    border:none;
 
-  background:none;
+    background:none;
 
-  font-size:18px;
+    font-size:18px;
 
 }
 
@@ -332,9 +364,9 @@ header h1 {
 
 .empty {
 
-  text-align:center;
+    text-align:center;
 
-  color:#9ca3af;
+    color:#9ca3af;
 
 }
 
@@ -342,30 +374,29 @@ header h1 {
 
 
 
-
 .floating-add {
 
-  position:fixed;
+    position:fixed;
 
-  right:25px;
+    right:25px;
 
-  bottom:30px;
+    bottom:30px;
 
-  width:65px;
+    width:65px;
 
-  height:65px;
+    height:65px;
 
-  border-radius:50%;
+    border-radius:50%;
 
-  border:none;
+    border:none;
 
-  background:#111827;
+    background:#111827;
 
-  color:white;
+    color:white;
 
-  font-size:35px;
+    font-size:35px;
 
-  box-shadow:0 10px 20px rgba(0,0,0,.2);
+    box-shadow:0 10px 20px rgba(0,0,0,.25);
 
 }
 
@@ -375,66 +406,35 @@ header h1 {
 
 .modal {
 
-  display:none;
+    display:none;
 
-  position:fixed;
+    position:fixed;
 
-  inset:0;
+    inset:0;
 
-  background:rgba(0,0,0,.5);
+    background:rgba(0,0,0,.5);
 
-  justify-content:center;
+    justify-content:center;
 
-  align-items:center;
+    align-items:center;
 
 }
+
+
 
 
 
 .modal-box {
 
-  background:white;
+    background:white;
 
-  width:90%;
+    width:90%;
 
-  max-width:400px;
+    max-width:400px;
 
-  padding:25px;
+    padding:25px;
 
-  border-radius:25px;
-
-}
-
-
-
-.modal-box input,
-.modal-box select {
-
-  width:100%;
-
-  padding:12px;
-
-  margin:8px 0 15px;
-
-  border-radius:12px;
-
-  border:1px solid #ddd;
-
-}
-
-
-
-.modal-box button {
-
-  width:100%;
-
-  padding:13px;
-
-  border:none;
-
-  border-radius:12px;
-
-  margin-top:10px;
+    border-radius:25px;
 
 }
 
@@ -444,11 +444,13 @@ header h1 {
 
 .check {
 
-  display:flex;
+    display:flex;
 
-  gap:10px;
+    align-items:center;
 
-  align-items:center;
+    gap:10px;
+
+    margin-top:15px;
 
 }
 
@@ -462,9 +464,9 @@ header h1 {
 
 body.dark {
 
-  background:#111827;
+    background:#111827;
 
-  color:white;
+    color:white;
 
 }
 
@@ -474,9 +476,9 @@ body.dark .card,
 body.dark .summary div,
 body.dark .modal-box {
 
-  background:#1f2937;
+    background:#1f2937;
 
-  color:white;
+    color:white;
 
 }
 
@@ -484,9 +486,17 @@ body.dark .modal-box {
 
 body.dark .day {
 
-  background:#374151;
+    background:#374151;
 
-  color:white;
+    color:white;
+
+}
+
+
+
+body.dark .balance {
+
+    color:#d1d5db;
 
 }
 
@@ -495,9 +505,11 @@ body.dark .day {
 body.dark input,
 body.dark select {
 
-  background:#374151;
+    background:#374151;
 
-  color:white;
+    color:white;
+
+    border-color:#4b5563;
 
 }
 
@@ -505,9 +517,10 @@ body.dark select {
 
 body.dark #darkToggle {
 
-  background:#374151;
+    background:#374151;
 
 }
+
 
 
 
@@ -518,23 +531,25 @@ body.dark #darkToggle {
 
 .app {
 
-padding:15px;
+    padding:15px;
 
 }
 
-
-.day {
-
-min-height:75px;
-
-font-size:10px;
-
-}
 
 
 .balance-card h2 {
 
-font-size:32px;
+    font-size:32px;
+
+}
+
+
+
+.day {
+
+    min-height:75px;
+
+    font-size:10px;
 
 }
 
