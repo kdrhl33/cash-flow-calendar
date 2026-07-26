@@ -15,63 +15,102 @@
 
 <h1 class="title">💰 CashFlow Calendar</h1>
 
+
 <div class="balance-card">
 
 <p>Current Balance</p>
 
-<h2 id="balance">S$819.35</h2>
+<h2 id="balance">
+S$819.35
+</h2>
 
 <div class="next-card">
 
 <p>Next Bill</p>
 
-<h3 id="nextBillName">Great Eastern</h3>
+<h3 id="nextBillName">
+Great Eastern
+</h3>
 
-<p id="nextBillAmount">-S$244.15</p>
-
-<hr>
-
-<p>Balance After Bill</p>
-
-<h2 id="balanceAfterBill">S$575.20</h2>
+<p id="nextBillAmount">
+-S$244.15
+</p>
 
 </div>
 
 </div>
 
-<div class="card">
 
-<h2>Today's Summary</h2>
-
-<div class="summaryRow">
-<span>Current Balance</span>
-<strong>S$819.35</strong>
-</div>
-
-<div class="summaryRow">
-<span>Today's Bills</span>
-<strong>1</strong>
-</div>
-
-<div class="summaryRow">
-<span>Remaining</span>
-<strong>S$575.20</strong>
-</div>
-
-</div>
 
 <div class="card">
 
 <h2>Calendar</h2>
 
-<div id="calendar">
+
+<div class="calendar-header">
+
+<button id="prevMonth">
+←
+</button>
+
+
+<h2 id="monthTitle">
+July 2026
+</h2>
+
+
+<button id="nextMonth">
+→
+</button>
+
+</div>
+
+
+<div id="calendar"></div>
 
 
 </div>
 
-</div>
+
+
+<div class="card">
+
+<h2>Add Transaction</h2>
+
+
+<input id="transactionName" placeholder="Name">
+
+
+<input id="transactionAmount" placeholder="Amount">
+
+
+<select id="transactionType">
+
+<option value="expense">
+Expense
+</option>
+
+<option value="income">
+Income
+</option>
+
+</select>
+
+
+<input id="transactionDay" placeholder="Day of month">
+
+
+<button id="addTransaction">
+Add
+</button>
+
 
 </div>
+
+
+</div>
+
+
 
 <nav class="bottom-nav">
 
@@ -81,15 +120,18 @@
 Home
 </div>
 
+
 <div class="nav-btn">
 📅
 <br>
 Calendar
 </div>
 
+
 <div class="add-btn">
 +
 </div>
+
 
 <div class="nav-btn">
 📊
@@ -97,13 +139,17 @@ Calendar
 Reports
 </div>
 
+
 <div class="nav-btn">
 ⚙️
 <br>
 Settings
 </div>
 
+
 </nav>
+
+
 
 <script src="app.js"></script>
 
