@@ -22,9 +22,7 @@
 
 <header>
 
-<h1>
-💰 CashFlow
-</h1>
+<h1>💰 CashFlow</h1>
 
 <button id="darkToggle">
 🌙
@@ -34,77 +32,76 @@
 
 
 
+
+
 <section class="balance-card">
 
-<p>
-Current Balance
-</p>
+<p>Current Balance</p>
 
 <h2 id="balance">
-S$819.35
+S$0.00
 </h2>
 
 
 <div class="next-bill">
 
-<p>
-Next Bill
-</p>
+<p>Next Bill</p>
 
 <h3 id="nextBillName">
-Great Eastern
+No bills yet
 </h3>
 
 <span id="nextBillAmount">
--S$244.15
+S$0.00
 </span>
 
 
-<p>
-After Bill
-</p>
+<p>Balance After Bill</p>
 
 <strong id="afterBill">
-S$575.20
+S$0.00
 </strong>
+
 
 </div>
 
 
 </section>
+
+
 
 
 
 
 <section class="summary">
 
+
 <div>
 
-<p>
-Income
-</p>
+<p>Income</p>
 
 <h3 id="incomeTotal">
-S$0
+S$0.00
 </h3>
 
 </div>
+
 
 
 <div>
 
-<p>
-Expenses
-</p>
+<p>Expenses</p>
 
 <h3 id="expenseTotal">
-S$0
+S$0.00
 </h3>
 
 </div>
+
 
 
 </section>
+
 
 
 
@@ -115,13 +112,13 @@ S$0
 
 <div class="calendar-top">
 
+
 <button id="prevMonth">
 ‹
 </button>
 
 
 <h2 id="monthTitle">
-July 2026
 </h2>
 
 
@@ -139,7 +136,9 @@ July 2026
 </div>
 
 
+
 </section>
+
 
 
 
@@ -156,6 +155,11 @@ Transactions
 
 <div id="transactionList">
 
+<p class="empty">
+No transactions yet
+</p>
+
+
 </div>
 
 
@@ -166,10 +170,15 @@ Transactions
 
 
 
+
 <button class="floating-add" id="openForm">
 
 +
+
 </button>
+
+
+
 
 
 
@@ -187,39 +196,70 @@ Add Transaction
 
 
 
-<input id="nameInput" placeholder="Name">
+<label>
+Name
+</label>
+
+<input id="nameInput" placeholder="Example: Salary">
 
 
-<input id="amountInput" placeholder="Amount">
 
 
+
+<label>
+Amount
+</label>
+
+<input id="amountInput" type="number" placeholder="0.00">
+
+
+
+
+
+<label>
+Type
+</label>
 
 <select id="typeInput">
+
+
+<option value="income">
+Income
+</option>
+
 
 <option value="expense">
 Expense
 </option>
 
-<option value="income">
-Income
-</option>
 
 </select>
 
 
 
 
+
+<label>
+Date
+</label>
+
 <input id="dateInput" type="date">
 
 
 
-<label>
+
+
+
+<label class="check">
 
 <input type="checkbox" id="repeatInput">
 
 Repeat monthly
 
 </label>
+
+
+
 
 
 
@@ -235,10 +275,13 @@ Cancel
 
 
 
-</div>
 
 
 </div>
+
+</div>
+
+
 
 
 
